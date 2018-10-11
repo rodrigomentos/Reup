@@ -1,0 +1,6 @@
+php artisan make:migration create_clientes_table --create=clientes  --table=clientes
+php artisan make:migration create_productos_table --create=productos  --table=productos
+php artisan make:migration create_ventas_table --create=ventas  --table=ventas
+php artisan make:migration create_comprobantes_table --create=comprobantes  --table=comprobantes
+php artisan make:migration create_detalleVentas_table --create=detalleVentas  --table=detalleVentas
+
