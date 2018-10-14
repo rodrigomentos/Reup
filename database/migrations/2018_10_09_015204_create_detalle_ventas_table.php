@@ -20,7 +20,7 @@ class CreateDetalleVentasTable extends Migration
             $table->integer('producto_id')->references('id')->on('productos');
             $table->integer('cantidad');
             $table->float('monto', 8, 2);
-      
+            $table->float('precio', 8, 2);
            
         });
     }

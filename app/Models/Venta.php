@@ -2,33 +2,17 @@
 
 namespace App\Models;
 
-class Venta
+use App\Models\Model;
+
+class Venta extends Model
 {
-    private $id;
+
     private $comprobante;
     private $cliente;
     private $monto;
     
 
-    /**
-     * Get the value of id
-     */ 
-    public function getId()
-    {
-        return $this->id;
-    }
 
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */ 
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
 
     /**
      * Get the value of comprobante

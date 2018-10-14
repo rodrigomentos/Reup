@@ -25,20 +25,33 @@ class SuldafComprobante implements interfaceSuldafComprobante
            
         } catch (QueryException $e) {
             
-            $itemComprobante->numero =  $this->find($comprobante)->getNumero()+1;
+            $itemComprobante->numero =  $this->findLasted($comprobante)->getNumero()+1;
             $itemComprobante->save();
         }
         
         return  MapperComprobante::mapRow($itemComprobante);
     }
 
+    public function findLasted(Comprobante $comprobante)
+    {
+        try {
 
+            $itemComprobante = RepositoryComprbante::byTipo($comprobante->getTipo())->lasted()->first();
+        
+
+            return  MapperComprobante::mapRow($itemComprobante);
+            
+        } catch (QueryException $e) {
+           
+            throw $e;
+        }
+    }
 
     public function find(Comprobante $comprobante)
     {
         try {
 
-            $itemComprobante = RepositoryComprbante::byTipo($comprobante->getTipo())->lasted()->first();
+            $itemComprobante = RepositoryComprbante::find($comprobante->getId());
         
 
             return  MapperComprobante::mapRow($itemComprobante);

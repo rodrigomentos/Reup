@@ -12,7 +12,7 @@ class ClienteController extends Controller
 
     public function __construct()
     {
-        $this->service = Service::cliente();
+        $this->service = Service::suldaf('SuldafCliente');
     }
 
     /**

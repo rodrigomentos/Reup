@@ -12,7 +12,7 @@ class ProductoController extends Controller
 
     public function __construct()
     {
-        $this->service = Service::producto();
+        $this->service = Service::suldaf('SuldafProducto');
     }
     /**
      * Display a listing of the resource.

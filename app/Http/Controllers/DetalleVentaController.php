@@ -3,9 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Services\Service;
+use App\Models\DetalleVenta;
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\VentaController;
+use App\Models\Venta;
 class DetalleVentaController extends Controller
 {
+    private $service;
+    private $venta;
+    private $producto;
+
+    public function __construct()
+    {
+        $this->service = Service::suldaf('SuldafDetalleVenta');
+        $this->producto = new ProductoController();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +47,18 @@ class DetalleVentaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $producto = $this->producto->show($request->get('producto_id'));
+        $venta = new Venta();
+        $venta->setId($request->get('venta_id'));
+        $detalleVenta = new DetalleVenta();
+        $detalleVenta->setCodigo($request->get('codigo'));
+        $detalleVenta->setVenta($venta);
+        $detalleVenta->setProducto($producto);
+        $detalleVenta->setCantidad($request->get('cantidad'));
+        
+      //  return $detalleVenta;
+
+        return $this->service->store($detalleVenta);
     }
 
     /**

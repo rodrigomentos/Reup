@@ -7,7 +7,7 @@ use App\Models\Producto;
 use App\Mapper\MapperProducto;
 use Illuminate\Database\QueryException;
 
-class SuldafProdcuto implements interfaceSuldafProducto
+class SuldafProducto implements interfaceSuldafProducto
 {
     public function store(Producto $producto)
     {
@@ -81,6 +81,13 @@ class SuldafProdcuto implements interfaceSuldafProducto
             
             $itemProducto = RepositoryProducto::find($producto->getId() );
 
+            if(is_array($producto->getId())){
+                return $itemProducto->map(function ($item, $key) {
+                    return MapperProducto::mapRow($item);
+                });
+            }
+                
+          
             return  MapperProducto::mapRow($itemProducto);
 
         } catch (QueryException $e) {

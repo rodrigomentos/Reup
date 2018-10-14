@@ -7,11 +7,11 @@ use App\Services\Service;
 use App\Models\Comprobante;
 class ComprobanteController extends Controller
 {
-    private $service;
+    public $service;
 
     public function __construct()
     {
-        $this->service = Service::comprobante();
+        $this->service = Service::suldaf('SuldafComprobante');
     }
 
     /**
@@ -58,7 +58,10 @@ class ComprobanteController extends Controller
      */
     public function show($id)
     {
-        //
+       $comprobante = new Comprobante();
+       $comprobante->setId($id);
+
+       return $this->service->find($comprobante);
     }
 
     /**

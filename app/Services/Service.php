@@ -9,6 +9,13 @@ use App\Suldaf\SuldafComprobante;
 
 class Service 
 {
+
+    public static function suldaf($builderSuldaf)
+    {
+        $builderSuldaf = "\App\Suldaf\\".$builderSuldaf;
+
+        return new BaseService(new $builderSuldaf());
+    }
     public static function cliente()
     {
         return new BaseService(new SuldafCliente());

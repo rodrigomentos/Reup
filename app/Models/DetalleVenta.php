@@ -2,36 +2,18 @@
 
 namespace App\Models;
 
-class DetalleVenta
+use App\Models\Model;
+class DetalleVenta extends Model
 {
-    private $id;
+
     private $codigo;
     private $venta;
     private $producto;
     private $cantidad;
     private $monto;
+    private $precio;   
 
 
-
-    /**
-     * Get the value of id
-     */ 
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */ 
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
 
     /**
      * Get the value of codigo
@@ -114,11 +96,31 @@ class DetalleVenta
     }
 
     /**
+     * Get the value of precio
+     */ 
+    public function getPrecio()
+    {
+        return $this->precio;
+    }
+
+    /**
+     * Set the value of precio
+     *
+     * @return  self
+     */ 
+    public function setPrecio($precio)
+    {
+        $this->precio = $precio;
+
+        return $this;
+    }
+
+    /**
      * Get the value of monto
      */ 
     public function getMonto()
     {
-        return $this->monto;
+        return $this->getPrecio() * $this->getCantidad();
     }
 
     /**
@@ -128,8 +130,10 @@ class DetalleVenta
      */ 
     public function setMonto($monto)
     {
-        $this->monto = $monto;
+       // $this->monto = $monto;
 
         return $this;
     }
+
+
 }
