@@ -47,10 +47,10 @@ class SuldafProducto implements interfaceSuldafProducto
     public function list($filter = [])
     {
         try {
-            $itemProducto = RepositoryProducto::activo()->limit(50)->orderBy('id', 'desc')->all();
+             $itemProducto = RepositoryProducto::activo()->orderBy('id', 'desc')->get();
 
-            return $itemProducto->map(function ($item, $key) {
-                return MapperProducto::mapRow($item);
+            return $itemProducto->map(function($item, $key) {
+                return MapperProducto::mapRow($item)->toArray();
             });
         } catch (QueryException $e) {
             throw $e;

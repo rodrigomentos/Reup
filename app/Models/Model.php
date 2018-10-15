@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Models;
-
-class Model
+use Illuminate\Database\Eloquent\Model as ModelEloquent; 
+class Model extends ModelEloquent
 {
     private $id;
     private $estado;

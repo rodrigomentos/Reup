@@ -8,4 +8,7 @@ interface interfaceSuldafComprobante
     public function store(Comprobante $comprobante);
 
     public function find(Comprobante $comprobante);
+
+    public function findLasted(Comprobante $comprobante);
+    
 }

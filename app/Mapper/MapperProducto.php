@@ -21,7 +21,7 @@ class MapperProducto
             $producto->setFechaCreacion($resulSet->created_at);
             $producto->setFechaActualizacion($resulSet->updated_at);
 
-            
+            return $producto->getId();
         }catch(\Exception $e){
 
             throw $e;

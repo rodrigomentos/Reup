@@ -36,7 +36,7 @@ class SuldafComprobante implements interfaceSuldafComprobante
     {
         try {
 
-            $itemComprobante = RepositoryComprbante::byTipo($comprobante->getTipo())->lasted()->first();
+            $itemComprobante = RepositoryComprbante::byTipo($comprobante->getTipo())->orderBy('id','desc')->first();
         
 
             return  MapperComprobante::mapRow($itemComprobante);

@@ -17,10 +17,10 @@ class TestCrudProducto extends TestCase
     {
         $productoController = new ProductoController();
 
-        $request = new Request(['nombre' => 'arroz Saman 49 kg.',
-                                'precio' => '130.00',
-                                'stock' => 45,
-                                'descripcion' =>'Promocion de un 20% todos los domingos'
+        $request = new Request(['nombre' => 'panetón donofrio 1 kl.',
+                                'precio' => '25.00',
+                                'stock' => 100,
+                                'descripcion' =>'3 x 2'
                     ]);
 
         $producto =  $productoController->store($request);

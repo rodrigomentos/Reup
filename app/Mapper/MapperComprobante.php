@@ -6,6 +6,7 @@ use App\Models\Comprobante;
 
 class MapperComprobante
 {
+    
     public static function mapRow($resulSet)
     {
         $comprobante = new Comprobante();

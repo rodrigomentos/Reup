@@ -1,22 +1,36 @@
+if(document.getElementById("modal-template")){
+// register modal component
+Vue.component('modal', {
+    template: '#modal-template'
+  })
+  
+  // start app
+ var appModal = new Vue({
+    el: '#app-modal',
+    data: {
+      showModal: false
+    },
+    methods: {
+      putContent: function(url){
+          if(url == ""){
+             // return false;
+          }
+          var urlFindCliente = '/api/find/cliente/'+documento
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+          let body =  document.querySelector(".modal-body")
 
-require('./bootstrap');
+          body.innerHTML = "Hola"
 
-window.Vue = require('vue');
+        /*  axios.get(urlFindCliente).then(response =>{
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+              let nombre =  document.querySelector("#nombre")
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
-const app = new Vue({
-    el: '#app'
-});
+              this.cliente = response.data
+              nombre.value = response.data.nombre
+              
+          })*/
+      }
+      
+    }
+  })
+}

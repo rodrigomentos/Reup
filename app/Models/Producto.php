@@ -94,5 +94,16 @@ class Producto extends Model
         return $this;
     }
 
+    public function toArray()
+    {
+        return [ 
+            'id'=> $this->getId(),
+            'nombre'=> $this->getNombre(),
+            'precio'=> $this->getPrecio(),
+            'stock' => $this->getStock(),
+            'descripcion'=> $this->getDescripcion(),
+            'estado'=>$this->getEstado(),
+         ];
+    }
    
 }

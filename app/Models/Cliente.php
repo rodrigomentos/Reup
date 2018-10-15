@@ -70,5 +70,14 @@ class Cliente extends Model
         return $this;
     }
 
+    public function toArray()
+    {
+        return [ 
+            'id'=> $this->getId(),
+            'documento'=> $this->getDocumento(),
+            'nombre'=> $this->getNombre(),
+            'estado'=> $this->getEstado(),
+         ];
+    }
 
 }

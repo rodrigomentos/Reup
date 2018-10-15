@@ -61,9 +61,9 @@ class ClienteController extends Controller
     {
         $cliente = new Cliente();
         $cliente->setDocumento($documento);
-
+        $cliente = $this->service->find($cliente);
        
-       return $this->service->find($cliente);
+       return $cliente->toArray();
     }
 
     /**

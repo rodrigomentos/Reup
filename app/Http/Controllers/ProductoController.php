@@ -21,7 +21,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        return view('producto.index');
     }
 
     /**
@@ -109,5 +109,10 @@ class ProductoController extends Controller
     public function active($id)
     {
         return $this->service->active($id);
+    }
+
+    public function list(Request $request)
+    {
+        return $this->service->list($request);
     }
 }

@@ -68,4 +68,13 @@ class BaseService implements InterfaceService
             throw $e;
         }
     }
+
+    public function findLasted(Model $object)
+    {
+        try {
+            return $this->suldaf->findLasted($object);
+        } catch (QueryException $e) {
+            throw $e;
+        }
+    }
 }

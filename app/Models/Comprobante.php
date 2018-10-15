@@ -7,7 +7,7 @@ use App\Models\Model;
 class Comprobante extends Model
 {
 
-  
+    
     private $tipo;
     private $serie;
     private $numero;
@@ -72,5 +72,15 @@ class Comprobante extends Model
         $this->numero = $numero;
 
         return $this;
+    }
+
+    public function toArray()
+    {
+        return [ 
+            'id'=> $this->getId(),
+            'tipo'=> $this->getTipo(),
+            'serie'=> $this->getSerie(),
+            'numero'=> $this->getNumero(),
+         ];
     }
 }

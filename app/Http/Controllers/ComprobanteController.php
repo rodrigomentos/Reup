@@ -60,8 +60,19 @@ class ComprobanteController extends Controller
     {
        $comprobante = new Comprobante();
        $comprobante->setId($id);
+       $comprobante = $this->service->find($comprobante);
+       
+       return $comprobante->toArray();
+    }
 
-       return $this->service->find($comprobante);
+
+    public function showLasted($id)
+    {
+       $comprobante = new Comprobante();
+       $comprobante->setTipo($id);
+       $comprobante = $this->service->findLasted($comprobante);
+       
+       return $comprobante->toArray();
     }
 
     /**
