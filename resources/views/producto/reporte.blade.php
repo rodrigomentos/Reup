@@ -1,6 +1,4 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 ">
+
             <div class="panel panel-default">
                 <div class="panel-heading text-center">Productos</div>
 
@@ -10,14 +8,14 @@
     
                     <div id="listProductos">
                     <div class="search-wrapper pull-right">
-                        <input type="text" v-model="search" placeholder="Buscar productos.."/>
+                        <input type="text" v-model="search" class="input-sm" placeholder="Buscar productos.."/>
                            
                     </div>
                     <table class="table table-producto table-condensed">
                         <thead>
                         <tr>
                             <th>N°</th>
-                            <th>Descipción</th>
+                            <th>Descripción</th>
                             <th>Precio</th>
                             <th>Stock</th>
                         </tr>
@@ -35,9 +33,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+ 
 
 <style>
 .table-producto tbody tr:hover {

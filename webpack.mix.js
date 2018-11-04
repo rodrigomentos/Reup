@@ -18,6 +18,7 @@ mix.scripts([
         'resources/assets/js/comprobante.js',
         'resources/assets/js/cliente.js',
         'resources/assets/js/producto.js',
+        'resources/assets/js/venta.js',
         ], 'public/js/app.js');
 
 // Full API

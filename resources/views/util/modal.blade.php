@@ -7,10 +7,9 @@
 
         
 
-          <div class="modal-body">
-            <slot name="body">
-              
-            </slot>
+          <div class="modal-body" >
+           {{ isset($body)?$body:''}}
+          
           </div>
 
           <div class="modal-footer">

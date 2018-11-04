@@ -22,7 +22,11 @@ if(document.getElementById("listProductos")){
             },
 
             clickList: function (product) {
-                console.log("clickList fired with " + product.id);
+
+                if(document.getElementById("listDetalleVentas")){
+                    detalleVentas.setDetalleVentas(product)
+                }
+                
             },
        
             

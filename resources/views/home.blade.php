@@ -12,7 +12,11 @@
                     @include('comprobante.find')
                     @include('cliente.find')
                     @include('producto.find')
-                    @include('util.modal')
+                    @include('producto.modal')
+                    
+                    <hr class="col-xs-12">
+
+                     @include('venta.detalle.reporte')
                 </div>
             </div>
         </div>

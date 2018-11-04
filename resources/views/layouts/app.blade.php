@@ -8,11 +8,32 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'ReUp') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/modal.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <script src="{{ asset('js/jquery.min.js') }} "></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <style>
+        .navbar-default .navbar-collapse, .navbar-default .navbar-form navbar, .navbar-static-top{
+            border-color: #d3e0e9;
+            background-color: #fff;
+            color: #636b6f;
+        }
+        .panel-default>.panel-heading {
+            color: #636b6f;
+            background-color: #fff;
+            border-color: #d3e0e9;
+        }
+            body {
+            font-family: Raleway,sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #636b6f;
+            background-color: #f5f8fa;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -30,7 +51,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'ReUp') }}
                     </a>
                 </div>
 
