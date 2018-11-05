@@ -30,6 +30,7 @@ document.querySelector('#tipo_comprobante').addEventListener("click",()=>{
     let tipo = document.querySelector("#tipo_comprobante")
 
     lastComprobante.getfindLastComprobante(tipo.value)
+    detalleVentas.applyIGV()
    
 
 })

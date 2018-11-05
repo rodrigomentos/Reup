@@ -3,6 +3,10 @@ if(document.getElementById("listDetalleVentas")){
         el: '#listDetalleVentas',
         data: {
             codigo:0,
+            igv:0,
+            totalIGV:0,
+            withIGV:true,
+            subTotal:0,
             montoTotal:0,
             detalleVentas:[],
         },
@@ -10,30 +14,32 @@ if(document.getElementById("listDetalleVentas")){
             detalleVentasList() {
                 
                 var _detalleVentas = [];
-                this.montoTotal = 0
-                
+                this.subTotal = 0
+                this.codigo = 0
                 for (var i=0, detalleVentas; detalleVentas = this.detalleVentas[i]; i++){
-                   
+                     this.codigo++
                      detalleVentas.total =  detalleVentas.cantidad * detalleVentas.precio;
-                     this.montoTotal+= detalleVentas.total
-                     detalleVentas.total =  detalleVentas.total.toFixed(2)
+                     detalleVentas.codigo = this.setCodigo(this.codigo)
+                     this.subTotal+= detalleVentas.total
+                     
                      _detalleVentas.push(detalleVentas);
                 }
-                this.montoTotal=this.montoTotal.toFixed(2)
+                this.setIGV();
+                this.setMontoTotal()
                 return _detalleVentas;
             }
           },
         methods: {
             setDetalleVentas: function(product){
                 
-                this.codigo++
+                
 
                 let producto = {
-                    codigo:"00"+ this.codigo,
+                    codigo: this.setCodigo(this.codigo),
                     producto_id:product.id,   
                     descripcion:product.nombre,
                     cantidad:"1",
-                    precio:product.precio.toFixed(2),
+                    precio:product.precio,
                     total:product.precio ,
                             
                 } 
@@ -41,8 +47,29 @@ if(document.getElementById("listDetalleVentas")){
                 this.detalleVentas.push(producto)
 
             },
-
-            clickList: function (detalleVentas) {
+            setMontoTotal()
+            {
+                return this.montoTotal = this.subTotal+this.totalIGV
+            },
+            applyIGV()
+            {
+                this.withIGV = (document.querySelector("#tipo_comprobante").value == 1)?true:false;
+                this.setIGV()
+            },
+            setIGV(){
+               
+                if(this.withIGV){
+                    this.igv = 0.18
+                    this.totalIGV = this.subTotal * this.igv
+                }else{
+                    this.igv = 0
+                    this.totalIGV = 0
+                }
+            },
+            setCodigo: function (codigo) {
+                if(codigo.toString().length === 1)
+                    return "00"+codigo
+                    return "0"+codigo
                // console.log(detalleVentas);
             },
             editDetalleVenta: function(detalleVenta,cantidad=1){
@@ -50,8 +77,11 @@ if(document.getElementById("listDetalleVentas")){
                     cantidad = 1;
                 detalleVenta.cantidad = cantidad
 
+            },
+            deleteDetalleVenta: function(detalleVenta){
+                this.detalleVentas.splice(detalleVenta, 1);
+               // this.detalleVentas.slice(this.detalleVentas.indexOf(detalleVenta), 1)
             }
-            
             
         },
         

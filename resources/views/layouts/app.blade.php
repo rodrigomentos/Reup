@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <script src="{{ asset('js/jquery.min.js') }} "></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
     <style>
         .navbar-default .navbar-collapse, .navbar-default .navbar-form navbar, .navbar-static-top{
             border-color: #d3e0e9;
@@ -32,6 +33,10 @@
             line-height: 1.6;
             color: #636b6f;
             background-color: #f5f8fa;
+        }
+        .table-producto tbody tr:hover {
+            background-color: #f2dede;
+            color: #a94442;
         }
     </style>
 </head>

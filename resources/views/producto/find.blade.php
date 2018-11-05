@@ -14,7 +14,6 @@
         </div>
     </div>
    
-    {{ Form::text('nombre_producto',null,['class'=>'col-sm-12 ','id'=>'nombre_producto'])}}
 
     
 

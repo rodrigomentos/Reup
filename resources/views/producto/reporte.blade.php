@@ -15,6 +15,7 @@
                         <thead>
                         <tr>
                             <th>N°</th>
+                            <th>Nombre</th>
                             <th>Descripción</th>
                             <th>Precio</th>
                             <th>Stock</th>
@@ -24,6 +25,7 @@
                         <tr v-for='(producto, index) in filteredProductosList' :key="producto.id" v-on:click="clickList(producto)">
                             <td :data-item="producto.id"> @{{ index +1 }} </td>
                             <td> @{{ producto.nombre }} </td>
+                            <td> @{{ producto.descripcion }} </td>
                             <td> @{{ producto.precio }} </td>
                             <td> @{{ producto.stock }} </td>
                         </tr>
@@ -35,8 +37,4 @@
             </div>
  
 
-<style>
-.table-producto tbody tr:hover {
-    background-color: #CCE7E7;
-}
-</style>
+
