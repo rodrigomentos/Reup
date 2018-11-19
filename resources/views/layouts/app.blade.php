@@ -8,14 +8,16 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'ReUp') }}</title>
+    <title>Reup</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <script src="{{ asset('js/jquery.min.js') }} "></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+   
 
+ 
     <style>
         .navbar-default .navbar-collapse, .navbar-default .navbar-form navbar, .navbar-static-top{
             border-color: #d3e0e9;
@@ -38,6 +40,15 @@
             background-color: #f2dede;
             color: #a94442;
         }
+
+        .notify{
+            position: fixed;
+            right: 25px;
+            bottom: 25px
+        }
+        a{
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -56,7 +67,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'ReUp') }}
+                        Reup
                     </a>
                 </div>
 
@@ -100,6 +111,14 @@
 
         @yield('content')
     </div>
+    <div id="notify">
+    
+            <div class="alert notify" id="alert-notify" v-show="flat">
+                @{{message}}
+            </div>
+       
+    </div>
+
     <script src="{{ asset('js/app.js') }}"></script>
     <!-- Scripts 
     <script src="{{ asset('js/app.js') }}"></script>-->

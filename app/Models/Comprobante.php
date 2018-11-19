@@ -22,6 +22,15 @@ class Comprobante extends Model
         return $this->tipo;
     }
 
+      /**
+     * Get the value of tipo
+     */ 
+    public function getTipoString()
+    {
+       return config('comprobante.typeString')[$this->tipo];
+        return $this->tipo;
+    }
+
     /**
      * Set the value of tipo
      *
@@ -42,6 +51,11 @@ class Comprobante extends Model
         return $this->serie;
     }
 
+    public function getSerieString()
+    {
+        return str_pad($this->getSerie(), 3, "0", STR_PAD_LEFT);
+    }
+
     /**
      * Set the value of serie
      *
@@ -54,12 +68,19 @@ class Comprobante extends Model
         return $this;
     }
 
+
+
     /**
      * Get the value of numero
      */ 
     public function getNumero()
     {
         return $this->numero;
+    }
+
+    public function getNumeroString()
+    {
+        return str_pad($this->getNumero(), 8, "0", STR_PAD_LEFT);
     }
 
     /**
@@ -79,8 +100,11 @@ class Comprobante extends Model
         return [ 
             'id'=> $this->getId(),
             'tipo'=> $this->getTipo(),
+            'tipoFormato'=> $this->getTipoString(),
             'serie'=> $this->getSerie(),
+            'serieFormato'=> $this->getSerieString(),
             'numero'=> $this->getNumero(),
+            'numeroFormato'=> $this->getNumeroString(),
          ];
     }
 }

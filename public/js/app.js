@@ -14524,7 +14524,67 @@ return /******/ (function(modules) { // webpackBootstrap
 });
 ;
 //# sourceMappingURL=axios.map
+var notify = new Vue({
+  el: '#notify',
+  data: {
+      message:'',
+      flat:false,
 
+  },
+  methods: {
+      show: function(message,nameClass ){
+        
+        this.message = message
+        $("#alert-notify").addClass("alert-"+nameClass.toString());
+        this.flat=true
+        
+        this.hide()
+       
+      },
+      hide:function(){
+
+        setTimeout(() => {
+          this.flat = false
+        },3000)
+     
+      }
+      
+  }
+})
+
+
+
+var util = {
+    created: function () {
+      //this.hello()
+    },
+    methods: {
+        manageError: function (error) {
+            
+            if(!error.response){
+              return false;
+            }
+            var message = Object.values(error.response.data.errors);
+            
+            for (let index = message.length -1 ; index >=0; index--) {
+
+              notify.show(message[index][0],'danger')
+               
+                
+            }
+         },
+         notify:function(message,title){
+             
+         }
+    }
+  }
+  
+  // define a component that uses this mixin
+  var Component = Vue.extend({
+    mixins: [util]
+  })
+  
+  var component = new Component();
 
 if(document.getElementById("findLastComprobante")){
 var lastComprobante = new Vue({
@@ -14544,8 +14604,10 @@ var lastComprobante = new Vue({
                 let numero =  document.querySelector("#numero")
   
                 this.comprobante = response.data
-                serie.value = response.data.serie
-                numero.value = response.data.numero
+               
+                serie.value = response.data.tipoFormato + response.data.serieFormato
+               
+                numero.value = response.data.numeroFormato
             })
         }
         
@@ -14578,8 +14640,13 @@ if(document.getElementById("cliente")){
                 axios.get(urlFindCliente).then(response =>{
 
                     let nombre =  document.querySelector("#nombre")
-    
+                    if(!response.data.id){
+                        notify.show('No se encontró al cliente.','danger')
+                        return false;
+                    }
                     this.cliente = response.data
+                    notify.show('Cliente encontrado con el documento: '+documento,'success')
+                    
                     nombre.value = response.data.nombre
                     
                 })
@@ -14606,6 +14673,23 @@ if(document.getElementById("cliente")){
     });
 
 }
+class Producto
+{
+    constructor(id,nombre,codigo,precio,stock,estado,descripcion) {
+        this.id = id
+        this.nombre = nombre
+        this.codigo = codigo
+        this.precio = precio
+        this.stock = stock
+        this.estado = estado
+        this.descripcion = descripcion
+        this.lastCodigo = codigo
+    }
+
+    
+}
+
+
 if(document.getElementById("listProductos")){
     var productos = new Vue({
         el: '#listProductos',
@@ -14615,6 +14699,7 @@ if(document.getElementById("listProductos")){
         data: {
             search: '',
             productos:[],
+            action:false,
         },
         methods: {
             getProductos: function(){
@@ -14636,6 +14721,35 @@ if(document.getElementById("listProductos")){
                 }
                 
             },
+            getProducto: function(codigo){
+                if(codigo == ""){
+                    return false;
+                }
+                var urlFindProducto = '/api/find/producto/'+codigo
+
+                axios.get(urlFindProducto).then(response =>{
+
+                    if(!response.data.id){
+                        notify.show('No se encontró el producto.','danger')
+                        return false;
+                    }
+                      detalleVentas.setDetalleVentas(response.data)
+                    notify.show('Producto encontrado','success')
+                    
+                   
+                    
+                })
+            },
+            deleteProducto:function(product){
+
+                axios.post('/eliminar/producto/'+product.id).then(response =>{
+
+                    notify.show('Producto eliminado con éxito.','success')
+
+
+                })
+                this.getProductos()
+            }
        
             
         },
@@ -14648,12 +14762,189 @@ if(document.getElementById("listProductos")){
           }
     })
 
+
+    document.querySelector('#codigoBarra').addEventListener("click",()=>{
+
+        let codigo = document.querySelector("#codigoBarra")
+
+        productos.getProducto(codigo.value)
+
+        codigo.value = '';
     
+
+    })
+
+    
+}
+
+if(document.getElementById("producto")){
+    var producto = new Vue({
+        el: '#producto',
+        created: function(){
+            this.getProduct();
+        },
+        data: {
+           codigo:'',
+        },
+        methods: {
+            getProduct: function(){
+                if(this.codigo == ""){
+                    return false;
+                }
+                productos.getProducto(this.codigo);
+                this.codigo = ''
+            },
+
+  
+            
+        },
+        computed: {
+      
+          }
+    })
+
+
+
+
+    
+}
+
+
+
+if(document.getElementById("form-producto")){
+    var formProducto = new Vue({
+        el: '#form-producto',
+        created: function(){
+            this.getProducto();
+        },
+        data: {
+            producto: new Producto('','','','','',1,''),
+
+           
+        },
+        methods: {
+            getProducto: function(){
+              
+               return this.producto 
+            },
+            setProducto: function(producto){
+                return this.producto = producto
+             },
+
+             getUrl: function(){
+
+               return (this.producto.id)?'/editar/producto/'+this.producto.id:'/registrar/producto'
+               
+             },
+            sendProducto: function () {
+
+                axios.post(this.getUrl(), this.producto)
+                  .then(function (response) {
+                   
+                    notify.show('Solicitud enviado con éxito.','success')
+
+                    if(this.producto.id == null){
+                      
+                        this.setProducto( new Producto('','','','','',1,''))
+                    }
+                    
+                 
+                }).catch(function (error) {
+
+                    component.manageError(error)
+                
+                });
+                
+            },
+                   getCliente: function(documento){
+                if(documento == ""){
+                    return false;
+                }
+                var urlFindCliente = '/api/find/cliente/'+documento
+
+                axios.get(urlFindCliente).then(response =>{
+
+                    let nombre =  document.querySelector("#nombre")
+                    if(!response.data.id){
+                        notify.show('No se encontró al cliente.','danger')
+                        return false;
+                    }
+                    this.cliente = response.data
+                    notify.show('Cliente encontrado con el documento: '+documento,'success')
+                    
+                    nombre.value = response.data.nombre
+                    
+                })
+            }
+       
+            
+        },
+        computed: {
+     
+          }
+    })
+
+    
+}
+
+
+
+class Venta
+{
+    constructor(comprobante,cliente,ventas,igv,pago)
+    {
+        this.comprobante = comprobante
+        this.cliente = cliente
+        this.ventas = ventas
+        this.igv = igv
+        this.pago = pago
+    }
+}
+
+if(document.getElementById("createdVenta")){
+    var venta = new Vue({
+        el: '#createdVenta',
+
+        data: {
+            venta: new Venta(),
+
+        },
+        methods:{
+            getVenta:function(){
+
+                return this.venta = new Venta(lastComprobante.comprobante,cliente.cliente,detalleVentas.detalleVentas,detalleVentas.igv,detalleVentas.pago)
+
+            },
+
+            sendVenta:function(){
+                
+                axios.post('/registrar/venta',this.getVenta())
+                    .then(function (response) {
+                    
+                    notify.show('Solicitud enviado con éxito.','success')
+
+                    //this.venta = new Venta()
+
+                    
+                
+                }).catch(function (error) {
+
+                    component.manageError(error)
+                
+                });
+                console.log(this.getVenta())
+            }
+        }
+    })
+
 }
 
 if(document.getElementById("listDetalleVentas")){
     var detalleVentas = new Vue({
         el: '#listDetalleVentas',
+        created: function(){
+            this.getCambio();
+        },
         data: {
             codigo:0,
             igv:0,
@@ -14661,6 +14952,8 @@ if(document.getElementById("listDetalleVentas")){
             withIGV:true,
             subTotal:0,
             montoTotal:0,
+            pago:0,
+            cambio:0,
             detalleVentas:[],
         },
         computed: {
@@ -14679,6 +14972,7 @@ if(document.getElementById("listDetalleVentas")){
                 }
                 this.setIGV();
                 this.setMontoTotal()
+                this.getCambio()
                 return _detalleVentas;
             }
           },
@@ -14698,11 +14992,21 @@ if(document.getElementById("listDetalleVentas")){
                 } 
                
                 this.detalleVentas.push(producto)
+               
 
             },
             setMontoTotal()
             {
                 return this.montoTotal = this.subTotal+this.totalIGV
+            },
+            getCambio()
+            {
+                if(this.montoTotal &&  this.pago >= this.montoTotal){
+                    
+                 return    this.cambio = this.pago - this.montoTotal
+                }
+                this.cambio = 0
+               
             },
             applyIGV()
             {

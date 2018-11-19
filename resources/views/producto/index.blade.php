@@ -9,4 +9,13 @@
     </div>
 </div>
 
+<script>
+
+$(document).ready(()=>{
+
+    productos.action = true;
+
+})
+
+</script>
 @endsection

@@ -1,11 +1,17 @@
 
             <div class="panel panel-default">
-                <div class="panel-heading text-center">Productos</div>
+                <div class="panel-heading text-center">Productos
+
+                  <div class="search-wrapper pull-right">
+                       <a href="/registrar/producto">Nuevo Producto</a>
+                           
+                    </div>
+                </div>
 
                 <div class="panel-body">
                     
              
-    
+
                     <div id="listProductos">
                     <div class="search-wrapper pull-right">
                         <input type="text" v-model="search" class="input-sm" placeholder="Buscar productos.."/>
@@ -19,6 +25,7 @@
                             <th>Descripción</th>
                             <th>Precio</th>
                             <th>Stock</th>
+                            <th v-show="action">Acciones</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -28,6 +35,7 @@
                             <td> @{{ producto.descripcion }} </td>
                             <td> @{{ producto.precio }} </td>
                             <td> @{{ producto.stock }} </td>
+                            <td v-show="action"> <a :href="'/editar/producto/' + producto.id"> Editar </a> | <a v-on:click="deleteProducto(producto)"  class="text-danger">Eliminar </a> </td>
                         </tr>
                     
                         </tbody>

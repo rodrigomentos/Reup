@@ -9,8 +9,8 @@
     
     {{Form::label('serie','Serie:',['class'=>'col-sm-3']) }}
     {{ Form::text('serie',null,['class'=>'col-sm-3'])}}
-    {{Form::label('numero','Nro:',['class'=>'col-sm-3']) }}
-    {{ Form::text('numero',null,['class'=>'col-sm-3'])}}
+    {{Form::label('numero','Nro:',['class'=>'col-sm-2']) }}
+    {{ Form::text('numero',null,['class'=>'col-sm-4'])}}
 
     
   

@@ -15,6 +15,17 @@ class Producto extends Model
 
     public function scopeById($query, $id)
     {
-        $query->where('id', $id);
+        if($id){
+            $query->where('id', $id);  
+        }
+        
+    }
+
+    public function scopeByCodigo($query, $codigo)
+    {
+        if($codigo){
+            $query->where('codigo', $codigo);
+        }
+       
     }
 }

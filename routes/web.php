@@ -21,3 +21,10 @@ Route::get('/', 'HomeController@index')->name('home');
 
 
 Route::get('/productos', 'ProductoController@index')->name('productos');
+Route::get('/registrar/producto', 'ProductoController@create');
+Route::post('/registrar/producto', 'ProductoController@store');
+Route::get('/editar/producto/{productoId}', 'ProductoController@edit');
+Route::post('/editar/producto/{productoId}', 'ProductoController@update');
+Route::post('/eliminar/producto/{productoId}', 'ProductoController@destroy');
+
+Route::post('/registrar/venta', 'VentaController@store');

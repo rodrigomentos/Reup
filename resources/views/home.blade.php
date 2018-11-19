@@ -17,6 +17,10 @@
                     <hr class="col-xs-12">
 
                      @include('venta.detalle.reporte')
+
+                     <div id="createdVenta">
+                         <button class="btn btn-primary pull-right" v-on:click="sendVenta()" > Imprimir y Guardar</button>
+                     </div>
                 </div>
             </div>
         </div>

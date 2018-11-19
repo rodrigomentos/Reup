@@ -1,4 +1,4 @@
-<div id="cliente" class="col-sm-5">
+<div id="cliente" class="col-sm-4">
    
     {{Form::label('documento','DOC:',['class'=>'col-sm-2']) }}
 

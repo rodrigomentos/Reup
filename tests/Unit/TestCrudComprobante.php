@@ -20,7 +20,7 @@ class TestCrudComprobante extends TestCase
     {
        $comprobanteController = new ComprobanteController();
 
-       $request = new Request(['tipo' => '1',
+       $request = new Request(['tipo' => '2',
                                'serie' => '1',
                                'numero'=> '1'
         ]);

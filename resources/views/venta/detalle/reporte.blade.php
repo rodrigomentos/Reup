@@ -18,16 +18,18 @@
             <td width="50%"> <input type="hidden" name="descripcion[]" :value="detalleVenta.descripcion"> @{{detalleVenta.descripcion}}  </td>
             <td width="10%"> <input  type="number"  min="1" name="cantidad[]" :value="detalleVenta.cantidad" v-on:click="editDetalleVenta(detalleVenta,$event.target.value)" v-on:keyup="editDetalleVenta(detalleVenta,$event.target.value)" > </td>
             <td> <input type="hidden" name="precio[]" :value="detalleVenta.precio"> @{{detalleVenta.precio}} </td>
-            <td> <input type="hidden" name="total[]" :value="detalleVenta.total"> @{{detalleVenta.total}}</td>
+            <td width="10%"> <input type="hidden" name="total[]" :value="detalleVenta.total"> @{{detalleVenta.total}}</td>
         </tr>
     
         </tbody>
         <tfoot>
 
             <tr>
-            <td rowspan="4" colspan="4"> </td>
+            <td rowspan="6" colspan="4">
+              
+            </td>
             <th>SubTotal:</th>
-            <td >@{{subTotal.toFixed(2)}}</td>
+            <td  >@{{subTotal.toFixed(2)}}</td>
             </tr>
             <tr>
             <th >IGV:</th>
@@ -41,7 +43,14 @@
             <th >Importe Total:</th>
             <td >@{{montoTotal.toFixed(2)}}</td>
             </tr>
-    
+            <tr>
+            <th >Pago:</th>
+            <td > <input  type="number"  min="1" name="pago" v-model="pago" v-on:click="getCambio()" v-on:keyup="getCambio()"> </td>
+            </tr>
+            <tr>
+            <th >Cambio:</th>
+            <td > @{{cambio.toFixed(2)}}</td>
+            </tr>
         </tfoot>
     </table>
 

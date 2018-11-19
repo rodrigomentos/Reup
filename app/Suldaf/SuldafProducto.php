@@ -15,6 +15,7 @@ class SuldafProducto implements interfaceSuldafProducto
 
             $itemProducto = new RepositoryProducto();
             $itemProducto->nombre = $producto->getNombre();
+            $itemProducto->codigo = $producto->getCodigo();
             $itemProducto->precio = $producto->getPrecio();
             $itemProducto->stock = $producto->getStock();
             $itemProducto->descripcion = $producto->getDescripcion();
@@ -32,6 +33,7 @@ class SuldafProducto implements interfaceSuldafProducto
             
             $itemProducto = RepositoryProducto::find($producto->getId() );
             $itemProducto->nombre = $producto->getNombre();
+            $itemProducto->codigo = $producto->getCodigo();
             $itemProducto->precio = $producto->getPrecio();
             $itemProducto->stock = $producto->getStock();
             $itemProducto->descripcion = $producto->getDescripcion();
@@ -79,7 +81,7 @@ class SuldafProducto implements interfaceSuldafProducto
     {
         try {
             
-            $itemProducto = RepositoryProducto::find($producto->getId() );
+            $itemProducto = RepositoryProducto::ById($producto->getId())->ByCodigo($producto->getCodigo())->first();
 
             if(is_array($producto->getId())){
                 return $itemProducto->map(function ($item, $key) {

@@ -7,6 +7,7 @@ class Producto extends Model
 {
   
     private $nombre;
+    private $codigo;
     private $precio;
     private $stock;
     private $descripcion;
@@ -30,6 +31,26 @@ class Producto extends Model
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of codigo
+     */ 
+    public function getCodigo()
+    {
+        return $this->codigo;
+    }
+
+    /**
+     * Set the value of codigo
+     *
+     * @return  self
+     */ 
+    public function setCodigo($codigo)
+    {
+        $this->codigo = $codigo;
 
         return $this;
     }
@@ -99,6 +120,7 @@ class Producto extends Model
         return [ 
             'id'=> $this->getId(),
             'nombre'=> $this->getNombre(),
+            'codigo'=> $this->getCodigo(),
             'precio'=> $this->getPrecio(),
             'stock' => $this->getStock(),
             'descripcion'=> $this->getDescripcion(),
@@ -106,4 +128,5 @@ class Producto extends Model
          ];
     }
    
+
 }

@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 Route::get('last/comprobante/{tipo}','ComprobanteController@showLasted');
 Route::get('find/cliente/{documento}','ClienteController@show');
+Route::get('find/producto/{codigo}','ProductoController@find');
 Route::get('productos','ProductoController@list');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

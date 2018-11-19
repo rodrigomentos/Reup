@@ -47,7 +47,20 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $this->validate($request,[
+            'comprobante'=>'required',
+            'ventas'=>'required',
+            'pago'=>'required',
+            'igv'=>'required'
+        ]);
+        if($request->comprobante['tipo'] == 1)
+        {
+            $this->validate($request,[
+                'cliente'=>'required',
+                'igv'=>'required|min:1'
+            ]);
+        }
+        return $request->all();
         $comprobante = $this->comprobante->show($request->comprobante_id);
         $cliente = $this->cliente->show($request->documento);
 

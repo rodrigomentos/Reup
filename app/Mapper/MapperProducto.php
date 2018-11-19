@@ -14,6 +14,7 @@ class MapperProducto
           
             $producto->setId($resulSet->id);
             $producto->setNombre($resulSet->nombre);
+            $producto->setCodigo($resulSet->codigo);
             $producto->setPrecio($resulSet->precio);
             $producto->setStock($resulSet->stock);
             $producto->setDescripcion($resulSet->descripcion);

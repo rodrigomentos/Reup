@@ -17,8 +17,10 @@ var lastComprobante = new Vue({
                 let numero =  document.querySelector("#numero")
   
                 this.comprobante = response.data
-                serie.value = response.data.serie
-                numero.value = response.data.numero
+               
+                serie.value = response.data.tipoFormato + response.data.serieFormato
+               
+                numero.value = response.data.numeroFormato
             })
         }
         
